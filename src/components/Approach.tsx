@@ -1,5 +1,5 @@
 import { approach } from "../data/profile";
-import { RoasCalculator } from "./RoasCalculator";
+import { RoasCalculator } from "src/components/RoasCalculator.tsx";
 
 export function Approach() {
   return (
