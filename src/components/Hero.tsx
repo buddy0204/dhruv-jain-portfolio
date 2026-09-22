@@ -1,4 +1,3 @@
-```tsx
 import { useState, useRef, type MouseEvent } from "react";
 import {
   ArrowDown,
@@ -130,5 +129,5 @@ export function Hero() {
     </section>
   );
 }
-```
+
 
