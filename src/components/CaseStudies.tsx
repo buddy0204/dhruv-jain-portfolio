@@ -1,19 +1,27 @@
+import { useState } from "react";
 import { caseStudies } from "../data/caseStudies";
 import { CaseStudyItem } from "./CaseStudyItem";
 
 export function CaseStudies() {
+  const [openId, setOpenId] = useState<string | null>(caseStudies[0]?.id ?? null);
+
   return (
     <section id="work" className="px-6 py-4 md:pl-28 md:pr-16">
       <div className="mx-auto w-full max-w-5xl">
         <h2 className="pt-24 font-display text-3xl text-paper md:text-4xl">Selected case studies</h2>
         <p className="mt-4 max-w-prose text-paper-muted">
           Three campaigns that show how I diagnose, test, and scale — across optimization, acquisition growth, and a
-          new-market experiment.
+          new-market experiment. Click a title to expand the full breakdown.
         </p>
 
         <div>
           {caseStudies.map((study) => (
-            <CaseStudyItem key={study.id} study={study} />
+            <CaseStudyItem
+              key={study.id}
+              study={study}
+              isOpen={openId === study.id}
+              onToggle={() => setOpenId(openId === study.id ? null : study.id)}
+            />
           ))}
         </div>
       </div>
