@@ -1,4 +1,5 @@
 import { approach } from "../data/profile";
+import { RoasCalculator } from "./RoasCalculator";
 
 export function Approach() {
   return (
@@ -16,6 +17,17 @@ export function Approach() {
             </li>
           ))}
         </ol>
+
+        <div className="mt-20">
+          <h3 className="font-display text-xl text-paper">Try the math</h3>
+          <p className="mt-2 max-w-prose text-sm text-paper-muted">
+            The same formula behind every decision above. Plug in your own numbers — this isn't tied to any
+            specific campaign.
+          </p>
+          <div className="mt-6">
+            <RoasCalculator />
+          </div>
+        </div>
       </div>
     </section>
   );
