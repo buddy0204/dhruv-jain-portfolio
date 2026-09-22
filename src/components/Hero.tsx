@@ -1,5 +1,12 @@
+```tsx
 import { useState, useRef, type MouseEvent } from "react";
-import { ArrowDown, Mail, Linkedin, FileText, Check } from "lucide-react";
+import {
+  ArrowDown,
+  Mail,
+  Linkedin,
+  FileText,
+  Check,
+} from "lucide-react";
 import { profile } from "../data/profile";
 
 export function Hero() {
@@ -9,7 +16,9 @@ export function Hero() {
 
   function handleMouseMove(e: MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
+
     if (!rect) return;
+
     setGlow({
       x: ((e.clientX - rect.left) / rect.width) * 100,
       y: ((e.clientY - rect.top) / rect.height) * 100,
@@ -18,10 +27,14 @@ export function Hero() {
 
   async function handleCopyEmail(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+
     try {
       await navigator.clipboard.writeText(profile.email);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 1800);
     } catch {
       window.location.href = `mailto:${profile.email}`;
     }
@@ -37,7 +50,11 @@ export function Hero() {
       <div
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500 motion-reduce:hidden"
         style={{
-          background: `radial-gradient(600px circle at ${glow.x}% ${glow.y}%, rgba(216,168,87,0.07), transparent 45%)`,
+          background: `radial-gradient(
+            600px circle at ${glow.x}% ${glow.y}%,
+            rgba(216,168,87,0.07),
+            transparent 45%
+          )`,
         }}
         aria-hidden="true"
       />
@@ -66,32 +83,42 @@ export function Hero() {
           style={{ animationDelay: "240ms" }}
         >
           <button
+            type="button"
             onClick={handleCopyEmail}
             className="inline-flex items-center gap-2 text-paper-muted transition-colors hover:text-gold"
             aria-label="Copy email address"
           >
-            {copied ? <Check className="h-4 w-4 text-signal-up" /> : <Mail className="h-4 w-4" />}
+            {copied ? (
+              <Check className="h-4 w-4 text-signal-up" />
+            ) : (
+              <Mail className="h-4 w-4" />
+            )}
+
             {copied ? "Copied!" : profile.email}
           </button>
-          
+
+          <a
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 text-paper-muted transition-colors hover:text-gold"
           >
-            <Linkedin className="h-4 w-4" /> LinkedIn
+            <Linkedin className="h-4 w-4" />
+            LinkedIn
           </a>
-          
+
+          <a
             href={`./${profile.resumeFile}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 text-paper-muted transition-colors hover:text-gold"
           >
-            <FileText className="h-4 w-4" /> Resume
+            <FileText className="h-4 w-4" />
+            Resume
           </a>
         </div>
 
-        
+        <a
           href="#work"
           className="animate-fade-up group mt-14 inline-flex items-center gap-2 border border-ink-border px-5 py-3 font-mono text-sm text-paper transition-colors hover:border-gold hover:text-gold"
           style={{ animationDelay: "320ms" }}
@@ -103,3 +130,5 @@ export function Hero() {
     </section>
   );
 }
+```
+
