@@ -11,14 +11,12 @@ html {
   color: #0b0e13;
 }
 
-/* Visible keyboard focus everywhere */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid #d8a857;
   outline-offset: 2px;
 }
 
-/* One orchestrated hero reveal — not repeated on every element site-wide */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -42,5 +40,8 @@ button:focus-visible {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
   }
 }
