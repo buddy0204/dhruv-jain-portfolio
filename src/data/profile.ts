@@ -1,47 +1,49 @@
-// Edit this file to update your personal details across the whole site.
+// Personal details used across the whole site. Edit here, not in components.
 export const profile = {
   name: "Dhruv Jain",
-  role: "Growth Marketer",
+  role: "Performance Marketer, Google Ads",
   location: "Ahmedabad, India",
-  positioning:
-    "I run paid acquisition across Google Ads, Meta Ads, and Apple Search Ads for a 30-app portfolio — turning weekly performance data into the next test, not the next guess.",
   email: "dhruvjaindp03@gmail.com",
   linkedin: "https://linkedin.com/in/dhruv-jain-analyst",
+  github: "https://github.com/buddy0204",
   resumeFile: "Dhruv_Jain_Resume.pdf",
-  about:
-    "I'm a growth marketer with just over a year of hands-on experience managing paid user acquisition for a 30-app B2C portfolio — around 15 apps live at any time, 100+ concurrent campaigns, and a monthly spend north of ₹50L across the US and a handful of secondary markets. My work sits at the intersection of media buying and analysis: I set up and run campaigns in Google Ads, Meta Ads, and Apple Search Ads, but the real leverage has come from treating every campaign as a hypothesis — tracking it in GA4 and Power BI, catching drift early, and deciding what to kill, keep, or scale based on what the data actually says.",
+
+  headline: "Turning Ad Spend Into Measurable Growth.",
+  intro:
+    "I'm Dhruv Jain, a Performance Marketer specializing in Google Ads, D2C growth, and data-driven customer acquisition. I build and optimize advertising strategies focused on measurable business outcomes.",
+
+  about: [
+    "I run Google Ads for D2C brands with one question in mind: does this spend come back as profitable revenue? For Louis Stitch that has meant holding ROAS above 5x, and for Jaiman Toys above 10x.",
+    "Most of the work happens before a budget goes up. I start with the product and the search behaviour around it: what people type, what they mean by it, and which of those searches a brand can win profitably. Campaign structure, bidding and creative follow from that research, and search term reports keep it honest afterwards.",
+    "Alongside freelance work, I run paid acquisition in-house at Pixster Studio across Google Ads, Meta Ads and Apple Search Ads for a portfolio of 30 apps. That role trained the habit I bring to every account: track weekly, catch drift early, and let the data decide what gets cut and what gets scaled.",
+  ],
+
+  toolkit: [
+    "Google Ads",
+    "Google Keyword Planner",
+    "Google Merchant Center",
+    "GA4",
+    "Conversion tags & UTMs",
+    "Looker Studio",
+    "Power BI",
+    "SQL & Python for analysis",
+  ],
+
+  // Shown in the About section. Source: resume (public/Dhruv_Jain_Resume.pdf).
+  experience: [
+    { role: "Freelance Google Ads & performance marketing", org: "D2C brands", period: "Ongoing" },
+    { role: "Data Analyst / Growth Marketer", org: "Pixster Studio", period: "Oct 2025 – present" },
+    { role: "Market Researcher", org: "OHSM", period: "May – Oct 2025" },
+    { role: "Bachelor of Computer Applications", org: "Christ University, Bengaluru", period: "2022 – 2025" },
+  ],
 };
 
-export const expertise = [
-  "Google Ads (UAC)",
-  "Meta Ads",
-  "Apple Search Ads / ASO",
-  "Campaign Optimization",
-  "Creative Testing",
-  "Budget Allocation & Pacing",
-  "GA4 & Funnel Analysis",
-  "Power BI / Looker Studio Reporting",
-];
-
-export const approach = [
-  {
-    step: "Analyze",
-    detail: "Pull weekly CPI, CPA, ROAS and funnel data across the portfolio to flag what's drifting.",
-  },
-  {
-    step: "Hypothesize",
-    detail: "Turn a drop or plateau into a specific, testable reason — not a guess.",
-  },
-  {
-    step: "Test",
-    detail: "Run the smallest change that isolates the hypothesis — a creative, an audience, a bid target.",
-  },
-  {
-    step: "Optimize",
-    detail: "Kill what doesn't move the metric within a defined window; keep what does.",
-  },
-  {
-    step: "Scale",
-    detail: "Push budget behind what's confirmed to work, then repeat the loop at the new spend level.",
-  },
-];
+export const navSections = [
+  { id: "results", label: "Results" },
+  { id: "brands", label: "Brands" },
+  { id: "case-studies", label: "Case studies" },
+  { id: "expertise", label: "Expertise" },
+  { id: "keyword-research", label: "Keyword research" },
+  { id: "process", label: "Process" },
+  { id: "about", label: "About" },
+] as const;

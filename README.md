@@ -1,83 +1,49 @@
-# Dhruv Jain — Performance Marketing Portfolio
+# Dhruv Jain | Google Ads & Performance Marketing Portfolio
 
-A premium, single-page portfolio for growth / performance marketing roles, built with React, Vite, TypeScript, and Tailwind CSS.
+Single-page portfolio for a Google Ads specialist working with D2C brands. Built with React 18, Vite 5, TypeScript and Tailwind CSS 3, with no UI or animation libraries beyond `lucide-react` icons.
 
-## What's inside
+Live: https://buddy0204.github.io/dhruv-jain-portfolio/
 
-- **Hero** — name, role, positioning statement, contact links
-- **About + Expertise** — short intro, platforms/skills, portfolio-wide impact indicators
-- **Selected Case Studies** — three campaigns (optimization, acquisition/growth, new-market experiment), each following Challenge → What I Did → Result → Learning
-- **My Approach** — Analyze → Hypothesize → Test → Optimize → Scale
-- **Contact** — closing CTA with email, LinkedIn, resume
+## Sections
 
-All copy and data live in `src/data/` so you can update the site without touching component code:
+| Section | Component | What it does |
+| --- | --- | --- |
+| Hero | `Hero.tsx`, `QueryStream.tsx` | Animated headline plus a pausable panel that sorts illustrative searches by intent |
+| Results | `Highlights.tsx` | ROAS shown as rupee blocks with count-up when scrolled into view |
+| Brands | `Brands.tsx` | Expandable brand profiles that link into the matching case study |
+| Case studies | `CaseStudies.tsx` | Brand switcher plus seven-chapter story navigation |
+| Expertise | `CampaignExplorer.tsx` | Tabs for PMax, Search, Shopping, Demand Gen and Sales, with a funnel diagram |
+| Keyword research | `KeywordProcess.tsx` | Eight connected steps with detail and example terms |
+| Process | `WorkingProcess.tsx`, `RoasCalculator.tsx` | Scroll-linked timeline plus a break-even ROAS calculator |
+| About / Contact | `About.tsx`, `Contact.tsx` | Background, toolkit, email (prefilled enquiry), LinkedIn, GitHub, resume |
 
-- `src/data/profile.ts` — name, role, bio, contact info, expertise list, "My Approach" steps
-- `src/data/caseStudies.ts` — the three case studies and portfolio-wide impact stats
+## Editing content
 
-Metrics throughout are described **directionally** (up/down, not invented percentages) — edit the `direction` and `note`/`detail` fields if you want to add real figures later.
+All copy lives in `src/data/`, so you rarely need to touch components:
+
+- `profile.ts`: name, contact links, hero text, About copy, experience, toolkit, nav labels
+- `brands.ts`: brand profiles and case studies. Only the confirmed ROAS figures are used. When a client approves sharing more, add entries to `extraMetrics` (they render automatically) and set `logoSrc` to a logo file placed in `public/`.
+- `expertise.ts`: campaign types, keyword research steps, working process, sample hero queries
+
+Design tokens (colours, font) are in `tailwind.config.ts`. The four `intent` colours mark search intent across the site.
 
 ## Local development
 
-Requires [Node.js](https://nodejs.org/) 18+.
+Requires Node.js 18+.
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:5173/dhruv-jain-portfolio/
+npm run build    # type-check + production build to dist/
+npm run preview  # serve the production build
 ```
 
-This starts a local dev server (usually at `http://localhost:5173`).
+## Deployment
 
-## Adding your resume
+`.github/workflows/main.yml` builds and deploys to GitHub Pages on every push to `main`. In the repo settings, Pages must use "GitHub Actions" as its source.
 
-1. Export your resume as a PDF.
-2. Place it in the `public/` folder, named to match `resumeFile` in `src/data/profile.ts` (default: `Dhruv_Jain_Resume.pdf`).
-3. It will be served at the site root, e.g. `https://<yourdomain>/Dhruv_Jain_Resume.pdf`.
+`vite.config.ts` sets `base: "/dhruv-jain-portfolio/"`. Change it to `"/"` for a custom domain, and update the canonical/OG URLs in `index.html` to match.
 
-A starting resume PDF is included in this project's `public/` folder — replace it any time.
+## Resume
 
-## Building for production
-
-```bash
-npm run build
-```
-
-Outputs a static site to `dist/`.
-
-## Deploying to GitHub Pages
-
-This repo includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys automatically on every push to `main`.
-
-**One-time setup:**
-
-1. Push this project to a new GitHub repository.
-2. In your repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. Open `vite.config.ts` and set `base` to match your repo name:
-   ```ts
-   base: "/your-repo-name/",
-   ```
-   (If you're deploying to a user/organization root site — a repo literally named `<username>.github.io` — set `base: "/"` instead.)
-4. Commit and push to `main`. The workflow will build and publish automatically.
-5. Your site will be live at `https://<username>.github.io/<your-repo-name>/`.
-
-**Manual alternative** (without GitHub Actions), using the included `gh-pages` package:
-
-```bash
-npm run deploy
-```
-
-This builds the project and pushes `dist/` to a `gh-pages` branch. Make sure `vite.config.ts`'s `base` is set correctly first, and that Pages is configured to serve from the `gh-pages` branch if you use this method instead of the Actions workflow.
-
-## Updating content later
-
-- **Text/copy/results:** edit `src/data/profile.ts` and `src/data/caseStudies.ts`.
-- **Colors/type:** edit `tailwind.config.ts` (the `ink`, `paper`, `signal`, and `gold` color tokens) and the font links in `index.html`.
-- **New case study:** add another object to the `caseStudies` array in `src/data/caseStudies.ts` — the layout handles any number automatically, though 3 is the intended count for a 2–3 minute read.
-
-## Tech stack
-
-- React 18 + TypeScript
-- Vite
-- Tailwind CSS
-- lucide-react (icons)
-- Recharts is included as a dependency for future use if you want to add real numeric charts later; the current build uses lightweight custom trend indicators instead, since all current results are described directionally rather than with specific figures.
+`public/Dhruv_Jain_Resume.pdf` is linked from the contact section. Replace the file to update it.

@@ -1,88 +1,86 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 
+const inr = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+
+// Adapted from the original calculator for D2C: ROAS alone doesn't say whether
+// spend is profitable, so it's compared with break-even ROAS from gross margin.
 export function RoasCalculator() {
-  const [spend, setSpend] = useState("5000");
-  const [installs, setInstalls] = useState("400");
-  const [revenue, setRevenue] = useState("6500");
+  const uid = useId();
+  const [spend, setSpend] = useState("40000");
+  const [value, setValue] = useState("140000");
+  const [margin, setMargin] = useState("40");
 
-  const spendNum = parseFloat(spend) || 0;
-  const installsNum = parseFloat(installs) || 0;
-  const revenueNum = parseFloat(revenue) || 0;
+  const s = Math.max(0, parseFloat(spend) || 0);
+  const v = Math.max(0, parseFloat(value) || 0);
+  const m = Math.min(100, Math.max(0, parseFloat(margin) || 0));
 
-  const cpi = installsNum > 0 ? spendNum / installsNum : null;
-  const roas = spendNum > 0 ? (revenueNum / spendNum) * 100 : null;
-  const profitable = roas !== null && roas >= 100;
+  const roas = s > 0 ? v / s : null;
+  const breakEven = m > 0 ? 100 / m : null;
+  const contribution = v * (m / 100) - s;
+  const profitable = roas !== null && breakEven !== null && roas > breakEven;
 
-  const inputClasses =
-    "w-full rounded-sm border border-ink-border bg-ink-950 px-3 py-2 font-mono text-sm text-paper outline-none transition-colors focus:border-gold";
+  const fields = [
+    { id: "spend", label: "Ad spend (₹)", value: spend, set: setSpend, max: undefined },
+    { id: "value", label: "Conversion value (₹)", value: value, set: setValue, max: undefined },
+    { id: "margin", label: "Gross margin (%)", value: margin, set: setMargin, max: 100 },
+  ];
 
   return (
-    <div className="rounded-sm border border-ink-border bg-ink-900 p-6 sm:p-8">
-      <div className="grid gap-8 md:grid-cols-2">
+    <div className="rounded-[32px] border border-rule bg-surface p-6 sm:p-10">
+      <div className="max-w-measure">
+        <h3 className="text-2xl font-bold tracking-tight text-chalk md:text-3xl">Is your ROAS actually profitable?</h3>
+        <p className="mt-3 leading-relaxed text-haze">
+          A ROAS figure only means something next to your margin. Enter your own numbers to compare your ROAS with the
+          break-even point. This is a general calculator, not tied to any client.
+        </p>
+      </div>
+
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-5">
-          <div>
-            <label htmlFor="calc-spend" className="font-mono text-xs uppercase tracking-wide text-paper-faint">
-              Ad spend ($)
-            </label>
-            <input
-              id="calc-spend"
-              type="number"
-              inputMode="decimal"
-              min="0"
-              value={spend}
-              onChange={(e) => setSpend(e.target.value)}
-              className={`mt-2 ${inputClasses}`}
-            />
-          </div>
-          <div>
-            <label htmlFor="calc-installs" className="font-mono text-xs uppercase tracking-wide text-paper-faint">
-              Installs
-            </label>
-            <input
-              id="calc-installs"
-              type="number"
-              inputMode="decimal"
-              min="0"
-              value={installs}
-              onChange={(e) => setInstalls(e.target.value)}
-              className={`mt-2 ${inputClasses}`}
-            />
-          </div>
-          <div>
-            <label htmlFor="calc-revenue" className="font-mono text-xs uppercase tracking-wide text-paper-faint">
-              Revenue generated ($)
-            </label>
-            <input
-              id="calc-revenue"
-              type="number"
-              inputMode="decimal"
-              min="0"
-              value={revenue}
-              onChange={(e) => setRevenue(e.target.value)}
-              className={`mt-2 ${inputClasses}`}
-            />
-          </div>
+          {fields.map((f) => (
+            <div key={f.id}>
+              <label htmlFor={`${uid}-${f.id}`} className="text-sm font-medium text-haze">
+                {f.label}
+              </label>
+              <input
+                id={`${uid}-${f.id}`}
+                type="number"
+                inputMode="decimal"
+                min={0}
+                max={f.max}
+                value={f.value}
+                onChange={(e) => f.set(e.target.value)}
+                className="nums mt-2 w-full rounded-xl border border-rule bg-well px-4 py-3 text-lg text-chalk outline-none transition-colors focus:border-brass"
+              />
+            </div>
+          ))}
         </div>
 
-        <div className="flex flex-col justify-center gap-6 border-t border-ink-border pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-wide text-paper-faint">CPI (cost per install)</p>
-            <p className="mt-2 font-display text-4xl text-paper">
-              {cpi !== null ? `$${cpi.toFixed(2)}` : "—"}
+        <div className="grid self-start gap-px overflow-hidden rounded-2xl border border-rule bg-rule sm:grid-cols-2" aria-live="polite">
+          <div className="bg-canvas p-6">
+            <p className="text-sm text-haze">Your ROAS</p>
+            <p className={`nums mt-2 text-5xl font-extrabold tracking-tight ${profitable ? "text-intent-buy" : "text-chalk"}`}>
+              {roas !== null ? `${roas.toFixed(1)}x` : "–"}
             </p>
           </div>
-          <div>
-            <p className="font-mono text-xs uppercase tracking-wide text-paper-faint">ROAS</p>
-            <p className={`mt-2 font-display text-4xl ${profitable ? "text-signal-up" : "text-paper"}`}>
-              {roas !== null ? `${roas.toFixed(0)}%` : "—"}
+          <div className="bg-canvas p-6">
+            <p className="text-sm text-haze">Break-even ROAS</p>
+            <p className="nums mt-2 text-5xl font-extrabold tracking-tight text-chalk">
+              {breakEven !== null ? `${breakEven.toFixed(1)}x` : "–"}
             </p>
-            {roas !== null && (
-              <p className="mt-1 text-xs text-paper-muted">
-                {profitable
-                  ? "Above 100% — spend has paid for itself."
-                  : "Below 100% — spend hasn't paid for itself yet."}
-              </p>
-            )}
+          </div>
+          <div className="bg-canvas p-6 sm:col-span-2">
+            <p className="text-sm text-haze">Gross profit after ad spend</p>
+            <p className={`nums mt-2 text-3xl font-bold tracking-tight ${contribution >= 0 ? "text-chalk" : "text-intent-block"}`}>
+              {inr.format(contribution)}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-haze">
+              {roas === null || breakEven === null
+                ? "Enter ad spend and a margin above zero to compare."
+                : profitable
+                  ? "Above break-even: this spend is adding gross profit."
+                  : "At or below break-even: this spend isn't covering product costs yet."}
+            </p>
           </div>
         </div>
       </div>

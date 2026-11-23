@@ -1,21 +1,45 @@
-import { NavRail } from "./components/NavRail";
+import { useCallback, useState } from "react";
+import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { About } from "./components/About";
+import { Highlights } from "./components/Highlights";
+import { Brands } from "./components/Brands";
 import { CaseStudies } from "./components/CaseStudies";
-import { Approach } from "./components/Approach";
+import { CampaignExplorer } from "./components/CampaignExplorer";
+import { KeywordProcess } from "./components/KeywordProcess";
+import { WorkingProcess } from "./components/WorkingProcess";
+import { About } from "./components/About";
 import { Contact } from "./components/Contact";
+import { brands } from "./data/brands";
 
 export default function App() {
+  const [caseId, setCaseId] = useState(brands[0].id);
+
+  // Brand profiles link into the matching case study.
+  const openCase = useCallback((id: string) => {
+    setCaseId(id);
+    document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
-    <div className="relative">
-      <NavRail />
-      <main>
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brass focus:px-4 focus:py-2 focus:font-semibold focus:text-canvas"
+      >
+        Skip to content
+      </a>
+      <Nav />
+      <main id="main">
         <Hero />
+        <Highlights />
+        <Brands onOpenCase={openCase} />
+        <CaseStudies activeId={caseId} onChange={setCaseId} />
+        <CampaignExplorer />
+        <KeywordProcess />
+        <WorkingProcess />
         <About />
-        <CaseStudies />
-        <Approach />
         <Contact />
       </main>
-    </div>
+    </>
   );
 }

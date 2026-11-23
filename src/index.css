@@ -2,46 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
-::selection {
-  background-color: #d8a857;
-  color: #0b0e13;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid #d8a857;
-  outline-offset: 2px;
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: theme("colors.canvas");
+    color-scheme: dark;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  body {
+    @apply bg-canvas font-sans text-chalk antialiased;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: theme("colors.brass");
+    color: theme("colors.canvas");
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.brass");
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* Tabular figures wherever numbers sit next to each other */
+  .nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12;
+  }
+  .section {
+    @apply py-24 md:py-32;
+  }
+  .h2 {
+    @apply text-[2.25rem] font-bold leading-[1.05] tracking-[-0.03em] text-chalk md:text-[3.25rem];
+  }
+  .lede {
+    @apply mt-5 max-w-measure text-lg leading-relaxed text-haze;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-brass text-canvas hover:bg-[#F6C77E];
+  }
+  .btn-ghost {
+    @apply btn border border-rule text-chalk hover:border-haze;
+  }
+}
+
+/* Reveal: applied only to section headings, once, when they enter view */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Subtle backdrop: a single navy-to-indigo glow behind the hero */
+.hero-glow {
+  background:
+    radial-gradient(60rem 30rem at 85% 10%, rgba(147, 166, 255, 0.09), transparent 60%),
+    radial-gradient(40rem 26rem at 10% 90%, rgba(240, 180, 91, 0.06), transparent 60%);
+}
+
+/* Faint measurement grid behind data panels */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, rgba(36, 48, 74, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36, 48, 74, 0.45) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-fade-up {
-    animation: none;
+  .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
   }
-  * {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
