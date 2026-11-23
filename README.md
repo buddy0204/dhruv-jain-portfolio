@@ -14,7 +14,8 @@ Live: https://buddy0204.github.io/dhruv-jain-portfolio/
 | Case studies | `CaseStudies.tsx` | Brand switcher plus seven-chapter story navigation |
 | Expertise | `CampaignExplorer.tsx` | Tabs for PMax, Search, Shopping, Demand Gen and Sales, with a funnel diagram |
 | Keyword research | `KeywordProcess.tsx` | Eight connected steps with detail and example terms |
-| Process | `WorkingProcess.tsx`, `RoasCalculator.tsx` | Scroll-linked timeline plus a break-even ROAS calculator |
+| In-house | `InHouse.tsx` | Pixster Studio work: scale, portfolio-wide impact and three expandable case studies |
+| Process | `WorkingProcess.tsx` | Scroll-linked timeline plus the weekly decision loop |
 | About / Contact | `About.tsx`, `Contact.tsx` | Background, toolkit, email (prefilled enquiry), LinkedIn, GitHub, resume |
 
 ## Editing content
@@ -23,6 +24,7 @@ All copy lives in `src/data/`, so you rarely need to touch components:
 
 - `profile.ts`: name, contact links, hero text, About copy, experience, toolkit, nav labels
 - `brands.ts`: brand profiles and case studies. Only the confirmed ROAS figures are used. When a client approves sharing more, add entries to `extraMetrics` (they render automatically) and set `logoSrc` to a logo file placed in `public/`.
+- `inhouse.ts`: in-house work at Pixster Studio, its three case studies, portfolio impact and the weekly decision loop
 - `expertise.ts`: campaign types, keyword research steps, working process, sample hero queries
 
 Design tokens (colours, font) are in `tailwind.config.ts`. The four `intent` colours mark search intent across the site.

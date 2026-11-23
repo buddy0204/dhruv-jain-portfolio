@@ -15,7 +15,7 @@ export const profile = {
   about: [
     "I run Google Ads for D2C brands with one question in mind: does this spend come back as profitable revenue? For Louis Stitch that has meant holding ROAS above 5x, and for Jaiman Toys above 10x.",
     "Most of the work happens before a budget goes up. I start with the product and the search behaviour around it: what people type, what they mean by it, and which of those searches a brand can win profitably. Campaign structure, bidding and creative follow from that research, and search term reports keep it honest afterwards.",
-    "Alongside freelance work, I run paid acquisition in-house at Pixster Studio across Google Ads, Meta Ads and Apple Search Ads for a portfolio of 30 apps. That role trained the habit I bring to every account: track weekly, catch drift early, and let the data decide what gets cut and what gets scaled.",
+    "Alongside freelance work, I run paid acquisition in-house at Pixster Studio across Google Ads, Meta Ads and Apple Search Ads for a portfolio of 30 apps (more on that in the in-house section above). That role trained the habit I bring to every account: track weekly, catch drift early, and let the data decide what gets cut and what gets scaled.",
   ],
 
   toolkit: [
@@ -42,6 +42,7 @@ export const navSections = [
   { id: "results", label: "Results" },
   { id: "brands", label: "Brands" },
   { id: "case-studies", label: "Case studies" },
+  { id: "in-house", label: "In-house" },
   { id: "expertise", label: "Expertise" },
   { id: "keyword-research", label: "Keyword research" },
   { id: "process", label: "Process" },

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { workingProcess } from "../data/expertise";
 import { SectionHeader } from "./ui/SectionHeader";
-import { RoasCalculator } from "./RoasCalculator";
+import { decisionLoop } from "../data/inhouse";
 
 export function WorkingProcess() {
   const listRef = useRef<HTMLOListElement>(null);
@@ -76,7 +76,23 @@ export function WorkingProcess() {
       </div>
 
       <div className="page mt-24">
-        <RoasCalculator />
+        <div className="rounded-[32px] border border-rule bg-surface p-6 sm:p-10">
+          <h3 className="text-2xl font-bold tracking-tight text-chalk md:text-3xl">The weekly loop behind every decision</h3>
+          <p className="mt-3 max-w-measure leading-relaxed text-haze">
+            Once an account is live, this is how I move from a data point to a decision, every week.
+          </p>
+          <ol className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+            {decisionLoop.map((item, i) => (
+              <li key={item.step} className="relative border-t-2 border-rule pt-5">
+                <span className="absolute -top-[2px] left-0 h-0.5 w-10 bg-brass" aria-hidden="true" />
+                <span className="nums text-sm font-semibold text-brass">{i + 1}</span>
+                <h4 className="mt-1 text-xl font-semibold tracking-tight text-chalk">{item.step}</h4>
+                <p className="mt-2 text-[15px] leading-relaxed text-haze">{item.detail}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8 text-sm text-dim">Then back to step 1, at the new spend level.</p>
+        </div>
       </div>
     </section>
   );
