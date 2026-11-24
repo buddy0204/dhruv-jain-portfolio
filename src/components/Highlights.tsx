@@ -1,4 +1,5 @@
 import { brands } from "../data/brands";
+import { inhouseProfile } from "../data/inhouse";
 import { useInView } from "../hooks/useInView";
 import { useCountUp } from "../hooks/useCountUp";
 import { SectionHeader } from "./ui/SectionHeader";
@@ -61,8 +62,8 @@ export function Highlights() {
       <div className="page">
         <SectionHeader
           id="results"
-          title="Spend that comes back several times over"
-          lede="Return on ad spend I've maintained for the D2C brands I manage. Each block is one rupee: one in, and what comes back as tracked conversion value."
+          title="Results across e-commerce and apps"
+          lede="For D2C brands, return on ad spend I've maintained. Each block is one rupee: one in, and what comes back as tracked conversion value. For apps, the scale I manage every month."
         />
 
         <div ref={ref} className="mt-14 grid gap-5 lg:grid-cols-2">
@@ -71,25 +72,25 @@ export function Highlights() {
           ))}
         </div>
 
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          <div className="rounded-[24px] border border-rule p-6 sm:p-8">
-            <h3 className="text-lg font-semibold tracking-tight text-chalk">Google Ads campaign management</h3>
-            <p className="mt-2 leading-relaxed text-haze">
-              Performance Max, Search, Shopping and Demand Gen, run end to end: research, structure, tracking,
-              optimisation and scaling.
-            </p>
+        <div className="mt-5 rounded-[24px] border border-rule bg-surface p-6 sm:p-8">
+          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
+            <h3 className="text-xl font-semibold tracking-tight text-chalk">App install campaigns</h3>
+            <a href="#app-campaigns" className="text-sm font-medium text-brass transition-colors hover:text-chalk">
+              See the app case studies
+            </a>
           </div>
-          <div className="rounded-[24px] border border-rule p-6 sm:p-8">
-            <h3 className="text-lg font-semibold tracking-tight text-chalk">D2C brand growth</h3>
-            <p className="mt-2 leading-relaxed text-haze">
-              Hands-on with direct-to-consumer brands in fashion and toys, where every campaign answers to
-              profitable revenue.
-            </p>
-          </div>
+          <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-4">
+            {inhouseProfile.scale.map((s) => (
+              <div key={s.label} className="border-t border-rule pt-4">
+                <dd className="nums text-4xl font-extrabold tracking-tight text-chalk">{s.value}</dd>
+                <dt className="mt-1 text-sm leading-snug text-haze">{s.label}</dt>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <p className="mt-6 text-sm text-dim">
-          Figures are ROAS levels maintained on the accounts, not a live feed. Revenue and spend aren't published here.
+          ROAS figures are levels maintained on the accounts, not a live feed. Client revenue and spend aren't published here.
         </p>
       </div>
     </section>

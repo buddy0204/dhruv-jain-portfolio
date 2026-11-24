@@ -97,13 +97,13 @@ function InHouseStudy({ study, open, onToggle }: { study: CaseStudy; open: boole
   );
 }
 
-export function InHouse() {
+export function AppCampaigns() {
   const [openId, setOpenId] = useState<string | null>(inhouseCaseStudies[0]?.id ?? null);
 
   return (
-    <section id="in-house" aria-labelledby="in-house-title" className="section border-t border-rule">
+    <section id="app-campaigns" aria-labelledby="app-campaigns-title" className="section border-t border-rule">
       <div className="page">
-        <SectionHeader id="in-house" title="In-house: paid acquisition at scale" lede={inhouseProfile.positioning} />
+        <SectionHeader id="app-campaigns" title="App install campaigns at portfolio scale" lede={inhouseProfile.positioning} />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
           <div className="rounded-[28px] border border-rule bg-surface p-6 sm:p-8">
@@ -111,7 +111,7 @@ export function InHouse() {
               {inhouseProfile.role}, {inhouseProfile.company}, {inhouseProfile.period}
             </p>
             <p className="mt-4 text-lg leading-relaxed text-chalk/90">{inhouseProfile.about}</p>
-            <ul className="mt-8 flex flex-wrap gap-2" aria-label="In-house expertise">
+            <ul className="mt-8 flex flex-wrap gap-2" aria-label="App campaign expertise">
               {inhouseProfile.expertise.map((e) => (
                 <li key={e} className="rounded-full border border-rule px-3 py-1 text-sm text-haze">
                   {e}
@@ -119,14 +119,14 @@ export function InHouse() {
               ))}
             </ul>
           </div>
-          <dl className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-[28px] border border-rule bg-rule">
-            {inhouseProfile.scale.map((s) => (
-              <div key={s.label} className="bg-surface p-6">
-                <dd className="nums text-4xl font-extrabold tracking-tight text-chalk">{s.value}</dd>
-                <dt className="mt-2 text-sm leading-snug text-haze">{s.label}</dt>
-              </div>
+          <ul className="self-start overflow-hidden rounded-[28px] border border-rule" aria-label="Channels">
+            {inhouseProfile.channels.map((c) => (
+              <li key={c.name} className="border-b border-rule p-6 last:border-0">
+                <p className="font-semibold text-chalk">{c.name}</p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-haze">{c.detail}</p>
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
 
         <div className="mt-16">
@@ -143,7 +143,7 @@ export function InHouse() {
         </div>
 
         <div className="mt-20">
-          <h3 className="text-xl font-semibold tracking-tight text-chalk">Selected in-house case studies</h3>
+          <h3 className="text-xl font-semibold tracking-tight text-chalk">App campaign case studies</h3>
           <p className="mt-2 max-w-measure text-haze">
             How I diagnose, test and scale, across optimisation, acquisition growth and a new-market experiment.
           </p>

@@ -4,18 +4,24 @@ import { QueryStream } from "./QueryStream";
 
 const words = profile.headline.split(" ");
 
+// Proof row: D2C results first, then app-campaign scale.
+const proof = [
+  { label: "Louis Stitch", value: "5x+ ROAS", accent: true },
+  { label: "Jaiman Toys", value: "10x+ ROAS", accent: true },
+  { label: "App portfolio", value: "30 apps", accent: false },
+  { label: "Monthly app spend", value: "₹50L+", accent: false },
+];
+
 export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="hero-glow relative overflow-hidden">
-      <div className="page grid min-h-[100svh] items-center gap-14 pb-20 pt-32 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:pt-28">
+      <div className="page grid min-h-[100svh] items-center gap-14 pb-16 pt-28 lg:grid-cols-[1.15fr_1fr] lg:gap-14 lg:pt-24">
         <div>
-          <p className="animate-rise text-[15px] font-medium text-haze">
-            {profile.role}, {profile.location}
-          </p>
+          <p className="animate-rise text-[15px] font-medium text-haze">{profile.role}</p>
 
           <h1
             id="hero-title"
-            className="mt-6 text-[clamp(2.9rem,7vw,5.6rem)] font-extrabold leading-[0.95] tracking-[-0.045em] text-chalk"
+            className="mt-6 text-[clamp(2.75rem,6.2vw,4.75rem)] font-extrabold leading-[0.95] tracking-[-0.045em] text-chalk"
           >
             {words.map((w, i) => (
               <Fragment key={i}>
@@ -29,12 +35,12 @@ export function Hero() {
             ))}
           </h1>
 
-          <p className="mt-8 max-w-[52ch] animate-rise text-lg leading-relaxed text-haze [animation-delay:600ms] md:text-xl">
+          <p className="mt-7 max-w-[54ch] animate-rise text-lg leading-relaxed text-haze [animation-delay:600ms]">
             {profile.intro}
           </p>
 
-          <div className="mt-10 flex animate-rise flex-wrap gap-3 [animation-delay:720ms]">
-            <a href="#case-studies" className="btn-primary">
+          <div className="mt-9 flex animate-rise flex-wrap gap-3 [animation-delay:720ms]">
+            <a href="#results" className="btn-primary">
               Explore my work
             </a>
             <a href="#contact" className="btn-ghost">
@@ -42,15 +48,15 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="mt-12 flex animate-rise flex-wrap gap-x-10 gap-y-5 border-t border-rule pt-6 [animation-delay:840ms]">
-            <div>
-              <dt className="text-sm text-haze">Louis Stitch</dt>
-              <dd className="nums mt-1 text-3xl font-bold tracking-tight text-brass">5x+ ROAS</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-haze">Jaiman Toys</dt>
-              <dd className="nums mt-1 text-3xl font-bold tracking-tight text-brass">10x+ ROAS</dd>
-            </div>
+          <dl className="mt-10 grid animate-rise grid-cols-2 gap-x-8 gap-y-6 border-t border-rule pt-6 [animation-delay:840ms] sm:grid-cols-4 sm:gap-x-6 lg:grid-cols-2 xl:grid-cols-4">
+            {proof.map((p) => (
+              <div key={p.label}>
+                <dt className="whitespace-nowrap text-sm text-haze">{p.label}</dt>
+                <dd className={`nums mt-1 whitespace-nowrap text-2xl font-bold tracking-tight ${p.accent ? "text-brass" : "text-chalk"}`}>
+                  {p.value}
+                </dd>
+              </div>
+            ))}
           </dl>
         </div>
 

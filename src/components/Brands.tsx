@@ -105,7 +105,7 @@ export function Brands({ onOpenCase }: { onOpenCase: (id: string) => void }) {
       <div className="page">
         <SectionHeader
           id="brands"
-          title="Brands I work with"
+          title="D2C brands I work with"
           lede="Freelance Google Ads management for direct-to-consumer brands, with full ownership of the account and its results."
         />
         <div className="mt-14 grid items-start gap-5 lg:grid-cols-2">

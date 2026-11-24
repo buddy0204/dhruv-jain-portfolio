@@ -5,7 +5,7 @@ import { IntentChip } from "./ui/IntentChip";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 const FEED_SIZE = 4;
-const SEED = [7, 6, 5];
+const SEED = [9, 8, 7];
 
 function countIntents(idx: number[]) {
   const c: Record<Intent, number> = { buy: 0, compare: 0, learn: 0, block: 0 };

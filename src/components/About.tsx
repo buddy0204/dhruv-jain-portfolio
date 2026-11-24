@@ -6,7 +6,7 @@ export function About() {
     <section id="about" aria-labelledby="about-title" className="section border-t border-rule">
       <div className="page grid gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
         <div>
-          <SectionHeader id="about" title="Research, then execution, then the numbers" />
+          <SectionHeader id="about" title="One person, from research to results" />
           <div className="mt-8 max-w-measure space-y-5 text-lg leading-relaxed text-chalk/85">
             {profile.about.map((p) => (
               <p key={p.slice(0, 24)}>{p}</p>

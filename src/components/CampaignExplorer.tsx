@@ -49,7 +49,7 @@ export function CampaignExplorer() {
         <SectionHeader
           id="expertise"
           title="Google Ads, campaign by campaign"
-          lede="Each campaign type plays a different role in a D2C account. Select one to see what it does, how I run it, and where it fits."
+          lede="Each campaign type plays a different role, whether the goal is sales for a D2C brand or installs for an app. Select one to see what it does, how I run it, and where it fits."
         />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-[320px_1fr]">
@@ -110,7 +110,7 @@ export function CampaignExplorer() {
               </div>
 
               <aside className="self-start rounded-2xl border border-rule bg-canvas/60 p-5">
-                <h4 className="text-sm font-semibold text-chalk">Where it fits in D2C growth</h4>
+                <h4 className="text-sm font-semibold text-chalk">Where it fits in the funnel</h4>
                 <div className="mt-5">
                   <Funnel from={active.stages[0]} to={active.stages[1]} />
                 </div>
@@ -120,7 +120,7 @@ export function CampaignExplorer() {
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-x-10 gap-y-8 border-t border-rule pt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-16 grid gap-x-10 gap-y-8 border-t border-rule pt-10 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c) => (
             <li key={c.title}>
               <h3 className="font-semibold text-chalk">{c.title}</h3>

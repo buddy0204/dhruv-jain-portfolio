@@ -52,7 +52,7 @@ export function Nav() {
           {profile.name}
         </a>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {navSections.map((s) => {
             const isActive = active === s.id;
             return (
@@ -60,7 +60,7 @@ export function Nav() {
                 <a
                   href={`#${s.id}`}
                   aria-current={isActive ? "location" : undefined}
-                  className={`relative rounded-full px-3 py-2 text-sm transition-colors ${
+                  className={`relative whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors ${
                     isActive ? "text-chalk" : "text-haze hover:text-chalk"
                   }`}
                 >
@@ -78,13 +78,13 @@ export function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a href="#contact" className="btn-primary hidden !px-5 !py-2 text-sm sm:inline-flex">
+          <a href="#contact" className="btn-primary hidden whitespace-nowrap !px-5 !py-2 text-sm sm:inline-flex">
             Let's work together
           </a>
           <button
             ref={toggleRef}
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-full border border-rule text-chalk lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-rule text-chalk xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -98,7 +98,7 @@ export function Nav() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-canvas lg:hidden"
+        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-canvas xl:hidden"
       >
         <ul className="page flex flex-col py-6">
           {navSections.map((s) => (

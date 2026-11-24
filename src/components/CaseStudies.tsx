@@ -88,8 +88,8 @@ export function CaseStudies({ activeId, onChange }: { activeId: string; onChange
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
             id="case-studies"
-            title="Case studies"
-            lede="How each account is run, from objective to learnings, in seven chapters."
+            title="D2C case studies"
+            lede="How each brand account is run, from objective to learnings, in seven chapters."
           />
           <div role="tablist" aria-label="Choose a case study" className="flex gap-2 rounded-full border border-rule p-1.5">
             {brands.map((b, i) => {

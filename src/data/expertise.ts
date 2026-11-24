@@ -15,14 +15,16 @@ export const sampleQueries: { query: string; intent: Intent; route: string }[] =
   { query: "birthday gift for 5 year old boy", intent: "compare", route: "Search, gifting ad group" },
   { query: "toy shop jobs near me", intent: "block", route: "Added as negative" },
   { query: "kids doctor set toy price", intent: "buy", route: "Shopping, product group" },
+  { query: "photo editor app download", intent: "buy", route: "App campaign, install goal" },
   { query: "best formal shoes for office", intent: "compare", route: "Search, category ad group" },
   { query: "how to polish leather shoes", intent: "learn", route: "Kept out of purchase campaigns" },
   { query: "wooden toys for 3 year old", intent: "buy", route: "Shopping, age-group listing" },
+  { query: "best budget tracker app", intent: "compare", route: "Apple Search Ads, category keyword" },
   { query: "free colouring pages printable", intent: "block", route: "Added as negative" },
 ];
 
 export type FunnelStage = 0 | 1 | 2;
-export const funnelStages = ["Awareness", "Consideration", "Purchase"] as const;
+export const funnelStages = ["Awareness", "Consideration", "Conversion"] as const;
 
 export interface CampaignExpertise {
   id: string;
@@ -109,6 +111,24 @@ export const campaignTypes: CampaignExpertise[] = [
     fit: "Fills the top of the funnel so Search and Shopping have more demand to capture.",
   },
   {
+    id: "app",
+    name: "App campaigns",
+    short: "Installs and in-app actions across Google",
+    stages: [0, 2],
+    what:
+      "App campaigns (formerly UAC) promote a mobile app across Search, Google Play, YouTube, Display and Discover from a single campaign, optimising toward installs, in-app actions or in-app value.",
+    approach:
+      "App campaigns are run on signals, not keywords, so the work is in choosing the right goal and feeding the system well. I start on installs only long enough to build volume, then move toward in-app actions or value, and keep creative fresh so performance doesn't fade.",
+    techniques: [
+      "Bidding progression from installs to in-app actions or value",
+      "Target CPI, CPA and ROAS settings changed in controlled steps",
+      "Creative testing with time-boxed kill and scale rules",
+      "Market-by-market tests before committing budget",
+      "Weekly CPI, CPA and day-0 return monitoring across the portfolio",
+    ],
+    fit: "The core Google channel for app growth. Alongside it, I run Meta Ads and Apple Search Ads for installs.",
+  },
+  {
     id: "sales",
     name: "Sales campaigns",
     short: "Campaigns built around the sales objective",
@@ -145,6 +165,14 @@ export const capabilities = [
   {
     title: "Search intent analysis",
     detail: "Every query judged by what the searcher wants, then routed, bid or excluded accordingly.",
+  },
+  {
+    title: "Meta Ads & Apple Search Ads",
+    detail: "App install campaigns beyond Google, run on the same weekly test-and-scale rhythm.",
+  },
+  {
+    title: "Creative testing",
+    detail: "New concepts get a fair, time-boxed test; weak ones are cut fast and winners scaled.",
   },
 ];
 
@@ -254,12 +282,12 @@ export const keywordProcess: KeywordStep[] = [
 ];
 
 export const workingProcess: { title: string; detail: string }[] = [
-  { title: "Business understanding", detail: "Products, margins, customers and goals, so targets reflect real economics." },
+  { title: "Business understanding", detail: "Products or app, margins, users and goals, so targets reflect real economics." },
   { title: "Account and campaign audit", detail: "Structure, tracking, spend and search terms reviewed to find what's working and what's leaking." },
   { title: "Market and competitor research", detail: "Search demand, competitor positioning and keyword opportunities mapped." },
   { title: "Strategy development", detail: "Campaign mix, structure, budgets and ROAS targets agreed in writing." },
   { title: "Campaign setup", detail: "Campaigns, ad groups, feeds, assets and negative lists built to the plan." },
-  { title: "Conversion tracking verification", detail: "Purchases and values confirmed to fire correctly before spend goes live." },
+  { title: "Conversion tracking verification", detail: "Purchases, installs and in-app events confirmed to fire correctly before spend goes live." },
   { title: "Launch and monitoring", detail: "Close daily checks while campaigns learn: spend pacing, queries and early signals." },
   { title: "Continuous optimisation", detail: "Search terms, bids, products and ads refined on a steady weekly rhythm." },
   { title: "Scaling and growth", detail: "Budget moves toward what holds its return, one measured step at a time." },

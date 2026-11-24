@@ -4,7 +4,8 @@ import { Hero } from "./components/Hero";
 import { Highlights } from "./components/Highlights";
 import { Brands } from "./components/Brands";
 import { CaseStudies } from "./components/CaseStudies";
-import { InHouse } from "./components/InHouse";
+import { AppCampaigns } from "./components/AppCampaigns";
+import { Services } from "./components/Services";
 import { CampaignExplorer } from "./components/CampaignExplorer";
 import { KeywordProcess } from "./components/KeywordProcess";
 import { WorkingProcess } from "./components/WorkingProcess";
@@ -32,10 +33,11 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
+        <Services />
         <Highlights />
         <Brands onOpenCase={openCase} />
         <CaseStudies activeId={caseId} onChange={setCaseId} />
-        <InHouse />
+        <AppCampaigns />
         <CampaignExplorer />
         <KeywordProcess />
         <WorkingProcess />

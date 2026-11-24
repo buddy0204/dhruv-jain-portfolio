@@ -141,6 +141,20 @@ export const inhouseProfile = {
     { value: "₹50L+", label: "monthly ad spend" },
     { value: "3", label: "channels: Google, Meta, Apple Search Ads" },
   ],
+  channels: [
+    {
+      name: "Google App campaigns",
+      detail: "Installs, in-app actions and value across Search, Play, YouTube and Display.",
+    },
+    {
+      name: "Meta Ads",
+      detail: "App install campaigns across Facebook and Instagram, with structured creative testing.",
+    },
+    {
+      name: "Apple Search Ads",
+      detail: "Keyword-led install campaigns on the App Store, supported by ASO.",
+    },
+  ],
   expertise: [
     "Google Ads (UAC)",
     "Meta Ads",

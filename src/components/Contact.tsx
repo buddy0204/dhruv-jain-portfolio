@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Check, Copy, FileText, Github, Linkedin } from "lucide-react";
 import { profile } from "../data/profile";
 
-const subject = encodeURIComponent("Google Ads management enquiry");
+const subject = encodeURIComponent("Freelance performance marketing enquiry");
 const body = encodeURIComponent(
-  "Hi Dhruv,\n\nBrand / website:\nWhat we sell:\nCurrent Google Ads setup (if any):\nWhat we'd like to achieve:\n\n"
+  "Hi Dhruv,\n\nBrand or app (with link):\nWhat we need help with (Google Ads / app installs / audit):\nChannels currently running and rough monthly budget:\nWhat we'd like to achieve:\n\n"
 );
 
 export function Contact() {
@@ -24,17 +24,25 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-rule">
       <div className="hero-glow absolute inset-0" aria-hidden="true" />
       <div className="page relative py-28 md:py-40">
-        <h2 id="contact-title" className="max-w-[12ch] text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.045em] text-chalk">
+        <p className="inline-flex items-center gap-2.5 rounded-full border border-rule bg-surface/60 px-4 py-2 text-sm text-chalk">
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-intent-buy opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-intent-buy" />
+          </span>
+          {profile.availability}
+        </p>
+        <h2 id="contact-title" className="mt-8 max-w-[12ch] text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.92] tracking-[-0.045em] text-chalk">
           Let's Work Together
         </h2>
         <p className="mt-8 max-w-[52ch] text-xl leading-relaxed text-haze">
-          Running a D2C brand and want Google Ads that answer to revenue? Tell me what you sell and where the account
-          stands today. I'll reply with what I'd look at first.
+          Whether you're a D2C brand that needs Google Ads to answer to revenue, or an app that needs installs at a
+          sensible cost, tell me what you're working on and where your ads stand today. I'll reply with what I'd look
+          at first.
         </p>
 
         <div className="mt-12 flex flex-wrap items-center gap-3">
           <a href={`mailto:${profile.email}?subject=${subject}&body=${body}`} className="btn-primary !px-7 !py-4 text-base">
-            Email me about your account
+            Email me about your project
           </a>
           <button type="button" onClick={copyEmail} className="btn-ghost !py-4">
             {copied ? <Check className="h-4 w-4 text-intent-buy" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
@@ -72,7 +80,7 @@ export function Contact() {
       <footer className="relative border-t border-rule">
         <div className="page flex flex-col justify-between gap-2 py-8 text-sm text-dim sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {profile.name}. {profile.location}.
+            © {new Date().getFullYear()} {profile.name}, {profile.role}
           </p>
           <a href="#top" className="transition-colors hover:text-chalk">
             Back to top
